@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+set -e
+
+mkdir -p target
+
+if [ -z "$PHONE_NUMBER" ]; then
+  echo "WARNING: Phone number not set in environment variable PHONE_NUMBER; using default"
+fi
+
+echo 'setting up files'
+# sed, the poor man's templating
+cat ./src/document/index.html | sed "s/{phonenumber}/${PHONE_NUMBER:-(555) 555-5555}/g" > ./target/index.html
+cp ./src/document/style.css ./target/
+
+echo "Using version: $(wkhtmltopdf --version)"
+wkhtmltopdf --enable-local-file-access \
+  --page-size Letter \
+  "$(realpath ./target/index.html)" \
+  ./target/resume.pdf

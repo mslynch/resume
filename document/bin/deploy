@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+set -e
+
+mkdir -p target
+
+if [ -z "$RESUME_CREDENTIALS" ]; then
+  echo 'RESUME_CREDENTIALS environment variable not set, exiting'
+  exit 1
+fi
+
+echo 'Updating environment variables...'
+npx netlify env:set RESUME_CREDENTIALS "$RESUME_CREDENTIALS" > /dev/null
+
+echo 'Deploying...'
+npx netlify deploy --prod

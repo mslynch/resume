@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Build
+      env:
+        PHONE_NUMBER: ${{ secrets.PHONE_NUMBER }}
+      run: cd document && ./bin/build-docker-full
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: '^1.17'
+
+    - name: Upload
+      env:
+        RESUME_APPLICATION_KEY_ID: ${{ secrets.RESUME_APPLICATION_KEY_ID }}
+        RESUME_APPLICATION_KEY: ${{ secrets.RESUME_APPLICATION_KEY }}
+        RESUME_BUCKET_ID: ${{ secrets.RESUME_BUCKET_ID }}
+        RESUME_FILENAME: document/target/resume.pdf
+      run: go run uploader/resume-uploader.go
