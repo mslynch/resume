@@ -1,0 +1,12 @@
+[build]
+  command = "./bin/build-all"
+  functions = "target"
+  publish = "target/resume"
+  
+[dev]
+  functions = "target"
+  publish = "target/resume"
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/resume"

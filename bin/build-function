@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+set -e
+
+./bin/build-docker-full
+mkdir -p ./target/resume
+cp ./src/resume.js ./target/resume/
+cp ./target/resume.pdf ./target/resume/resume.pdf

@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+set -e
+
+docker container rm resume-builder || true
+mkdir -p target
+
+docker run --name resume-builder \
+  --volume "$(realpath ./src/document)":/resume/src/document:z \
+  --volume "$(realpath ./target)":/resume/target:z \
+  -e "PHONE_NUMBER=$PHONE_NUMBER" \
+  resume-builder

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+cp netlify.template.toml netlify.toml
+RESUME_CREDENTIALS='[{"username": "user", "password": "pass"}]' npx netlify dev
