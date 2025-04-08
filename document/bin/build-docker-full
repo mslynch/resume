@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-set -e
-
-docker build . -t resume-builder
-./bin/build-docker

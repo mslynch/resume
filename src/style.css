@@ -1,15 +1,14 @@
 body {
     font-family: 'Inter';
-    font-size: 18px;
     padding-left: 40px;
     padding-right: 40px;
-    padding-top: 15px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 a {
     font-weight: 500;
     color: #00965f;
-    margin: 0px 10px;
 }
 
 a:link {
@@ -20,33 +19,35 @@ h1 {
     text-transform: uppercase;
     font-family: 'IBM Plex Sans';
     font-weight: 800;
-    font-size: 30pt;
-    margin-top: 0px;
+    font-size: 28pt;
+    margin-top: 3px;
     margin-bottom: 3px;
     text-align: center;
 }
 
+.contact-links {
+    font-size: 18px;
+    text-align: center;
+}
+.contact-links li {
+    display: inline-block;
+}
 .contact-links li:not(:last-child):after {
     content: "|";
     color: #777;
 }
-
-.contact-links {
-    text-align: center;
-}
-
-.contact-links li {
-    display: inline-block;
+.contact-links a {
+    margin: 0px 10px;
 }
 
 .content {
     line-height: 1.6;
-    font-size: 16px;
-    margin-top: -20px;
+    font-size: 14px;
+    margin-top: -10px;
 }
 
 h2 {
-    font-size: 25px;
+    font-size: 22px;
     margin-top: 28px;
     margin-bottom: 5px;
 }
@@ -81,7 +82,7 @@ h2 {
 
 .subsection-heading>span {
     padding: 0px 3px;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .subsection-heading>span:first-child {
@@ -114,4 +115,14 @@ td.label {
     font-weight: 300;
     font-size: 12px;
     color: #333;
+}
+
+.footer {
+    font-size: 13px;
+    color: #777;
+    text-align: center;
+     /* there doesn't appear to be a good way to get the footer to display at 
+     the bottom of the page without also displaying on every page - this will
+     need adjustment upon editing content */
+    margin-top: 450px;
 }

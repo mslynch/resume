@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+set -e
+
+mkdir -p target
+
+if [ -z "$PHONE_NUMBER" ]; then
+  echo "WARNING: Phone number not set in environment variable PHONE_NUMBER; using default"
+fi
+
+# sed, the poor man's templating
+cat ./src/index.html | sed "s/{phonenumber}/${PHONE_NUMBER:-(555) 555-5555}/g" > ./target/index.html
+
+curl \
+--request POST http://localhost:3000/forms/chromium/convert/html \
+--form files=@./target/index.html \
+--form files=@./src/style.css \
+--form marginTop=30px \
+--form marginBottom=30px \
+--form marginLeft=0px \
+--form marginRight=0px \
+--form singlePage=false \
+-o ./target/resume.pdf
+
+echo 'resume generated.'

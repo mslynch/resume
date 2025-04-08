@@ -7,15 +7,25 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+    services:
+      gotenberg:
+        image: gotenberg/gotenberg:8
+        ports:
+          - 3000:3000
+
     steps:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Start Gotenberg
+      run: |
+        docker compose build
+        docker compose up -d
+
     - name: Build
       env:
         PHONE_NUMBER: ${{ secrets.PHONE_NUMBER }}
-      run: cd document && ./bin/build-docker-full
+      run: ./bin/build
 
     - name: Set up Go
       uses: actions/setup-go@v2
@@ -27,5 +37,5 @@ jobs:
         RESUME_APPLICATION_KEY_ID: ${{ secrets.RESUME_APPLICATION_KEY_ID }}
         RESUME_APPLICATION_KEY: ${{ secrets.RESUME_APPLICATION_KEY }}
         RESUME_BUCKET_ID: ${{ secrets.RESUME_BUCKET_ID }}
-        RESUME_FILENAME: document/target/resume.pdf
+        RESUME_FILENAME: target/resume.pdf
       run: go run uploader/resume-uploader.go

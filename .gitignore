@@ -1,1 +1,2 @@
-document/target
+target/
+.DS_Store

@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-find ./src/document | entr ./bin/build-docker
