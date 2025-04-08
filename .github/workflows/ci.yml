@@ -33,4 +33,4 @@ jobs:
         RESUME_APPLICATION_KEY: ${{ secrets.RESUME_APPLICATION_KEY }}
         RESUME_BUCKET_ID: ${{ secrets.RESUME_BUCKET_ID }}
         RESUME_FILENAME: target/resume.pdf
-      run: go run uploader/resume-uploader.go
+      run: go run uploader/resume_uploader.go
