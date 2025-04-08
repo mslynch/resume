@@ -105,13 +105,13 @@ h2 {
 }
 
 td.label {
+    width: 150px;
     text-align: center;
     font-size: 17px;
     text-align: center;
 }
 
 .sublabel {
-    width: 150px;
     font-weight: 300;
     font-size: 12px;
     color: #333;
